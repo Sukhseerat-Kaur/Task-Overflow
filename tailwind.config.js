@@ -8,11 +8,13 @@ module.exports = {
       },
       colors: {
         orange: "#dd614a",
+        orangeDark: "#c03d25",
+      },
+      outline: {
+        blue: ["2px solid #49B2fd", "1px"],
       },
     },
   },
-  variants: {
-    extend: {},
-  },
+  variants: {},
   plugins: [],
 };
