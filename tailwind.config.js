@@ -14,6 +14,9 @@ module.exports = {
         blue: ["2px solid #49B2fd", "1px"],
       },
     },
+    minWidth: {
+      "1/4": "25%",
+    },
   },
   variants: {},
   plugins: [],
