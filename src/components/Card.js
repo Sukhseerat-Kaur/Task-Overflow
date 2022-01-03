@@ -4,8 +4,11 @@ import { FiCheckSquare } from "react-icons/fi";
 import Label from "./Label";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteCard } from "../actions/cardActions";
 
-const Card = ({ cardData }) => {
+const Card = ({ cardData, boardIndex, cardIndex }) => {
+  const dispatch = useDispatch();
   const [isHover, setIsHover] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   return (
@@ -16,7 +19,7 @@ const Card = ({ cardData }) => {
     >
       <header className="flex w-full">
         <div className="flex flex-1 gap-2 flex-wrap">
-          {cardData?.labels.map((label, index) => (
+          {cardData?.labels?.map((label, index) => (
             <Label key={index} labelData={label} close={false} />
           ))}
         </div>
@@ -31,7 +34,10 @@ const Card = ({ cardData }) => {
             onClick={() => setShowDropdown(true)}
           />
           {showDropdown && (
-            <Dropdown onClose={() => setShowDropdown(false)}>
+            <Dropdown
+              onClose={() => setShowDropdown(false)}
+              handleOnClick={() => dispatch(deleteCard(cardIndex, boardIndex))}
+            >
               <p>Delete</p>
             </Dropdown>
           )}

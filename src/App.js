@@ -1,42 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import Board from "./components/Board";
 import Editable from "./components/Editable";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [boards, setBoards] = useState([
-    {
-      id: 1,
-      title: "To do",
-      cards: [
-        {
-          id: 1,
-          title: "Card 1",
-          tasks: [],
-          labels: [
-            {
-              text: "urgent",
-              color: "red",
-            },
-          ],
-          desc: "have to finish now",
-          date: "29 Nov",
-        },
-        {
-          id: 2,
-          title: "Card 2",
-          tasks: [],
-          labels: [
-            {
-              text: "important",
-              color: "green",
-            },
-          ],
-          desc: "have to finish now 2",
-          date: "30 Nov",
-        },
-      ],
-    },
-  ]);
+  // const [boards, setBoards] = useState([
+  //   {
+  //     id: 1,
+  //     title: "To do",
+  //     cards: [
+  //       {
+  //         id: 1,
+  //         title: "Card 1",
+  //         tasks: [],
+  //         labels: [
+  //           {
+  //             text: "urgent",
+  //             color: "red",
+  //           },
+  //         ],
+  //         desc: "have to finish now",
+  //         date: "29 Nov",
+  //       },
+  //       {
+  //         id: 2,
+  //         title: "Card 2",
+  //         tasks: [],
+  //         labels: [
+  //           {
+  //             text: "important",
+  //             color: "green",
+  //           },
+  //         ],
+  //         desc: "have to finish now 2",
+  //         date: "30 Nov",
+  //       },
+  //     ],
+  //   },
+  // ]);
+
+  const boards = useSelector((state) => state.boards);
 
   return (
     <div className="font-Rajdhani w-screen h-screen bg-yellow-50 flex flex-col gap-4 font-bold">
@@ -45,14 +48,15 @@ function App() {
       </header>
 
       <main className="flex gap-8 p-3 px-5 h-full overflow-x-auto flex-1 w-full">
-        {boards.map((board, index) => (
-          <Board key={index} boardData={board} />
-        ))}
+        {boards.map((board, index) => {
+          return <Board key={index} boardData={board} boardIndex={index} />;
+        })}
         <div className="w-1/4 min-w-1/4">
           <Editable
             text="+ Add Board"
             placeholder="Add board title..."
             btnColor="rgb(30, 58, 138)"
+            callingComponent="app"
           />
         </div>
       </main>
