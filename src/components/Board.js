@@ -5,8 +5,9 @@ import Editable from "./Editable";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../actions/boardActions";
+import { Draggable } from "react-beautiful-dnd";
 
-const Board = ({ boardData, boardIndex }) => {
+const Board = ({ boardData, boardIndex, provided, snapshot }) => {
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
   return (
@@ -33,21 +34,41 @@ const Board = ({ boardData, boardIndex }) => {
           )}
         </div>
       </header>
-      <div className="custom-scrollbar bg-yellow-100 p-3 rounded-lg flex flex-col gap-4 h-full overflow-y-auto flex-1">
+      <div
+        {...provided.droppableProps}
+        ref={provided.innerRef}
+        className={
+          snapshot.isDraggingOver
+            ? "custom-scrollbar bg-yellow-200 p-3 rounded-lg flex flex-col gap-4 h-full overflow-y-auto flex-1"
+            : "custom-scrollbar bg-yellow-100 p-3 rounded-lg flex flex-col gap-4 h-full overflow-y-auto flex-1"
+        }
+      >
         {boardData?.cards.map((card, index) => (
-          <Card
-            key={index}
-            cardData={card}
-            boardIndex={boardIndex}
-            cardIndex={index}
-          />
+          <Draggable
+            key={card.id}
+            draggableId={card.id.toString()}
+            index={index}
+          >
+            {(provided, snapshot) => {
+              return (
+                <Card
+                  key={index}
+                  cardData={card}
+                  boardIndex={boardIndex}
+                  cardIndex={index}
+                  provided={provided}
+                />
+              );
+            }}
+          </Draggable>
         ))}
         <Editable
-          text="+ Add Card"
           placeholder="Add task title..."
           callingComponent="board"
           boardIndex={boardIndex}
         />
+
+        {provided.placeholder}
       </div>
     </div>
   );

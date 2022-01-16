@@ -4,7 +4,7 @@ const Dropdown = (props) => {
   const dropdownRef = useRef();
 
   const handleClick = (e) => {
-    if (dropdownRef && !dropdownRef.current?.contains(e.target)) {
+    if (dropdownRef && !dropdownRef?.current?.contains(e.target)) {
       if (props.onClose) props.onClose();
     }
   };

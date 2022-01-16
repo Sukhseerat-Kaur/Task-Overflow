@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { addBoard } from "../actions/boardActions";
 import { addCard } from "../actions/cardActions";
 const Editable = ({
-  text,
-  addBtnText,
+  btnText,
   placeholder,
   callingComponent,
   btnColor,
@@ -47,7 +46,7 @@ const Editable = ({
               className="bg-blue-800 hover:bg-blue-900 px-3 py-1 rounded-sm"
               onClick={handleFormSubmit}
             >
-              {addBtnText || "Add"}
+              Add
             </button>
             <button
               className="px-3 py-1 rounded-sm bg-red-700 hover:bg-red-800"
@@ -65,7 +64,7 @@ const Editable = ({
             setShowEdit(true);
           }}
         >
-          {text || "+ Add Card"}
+          {btnText || "+ Add Card"}
         </p>
       )}
     </div>

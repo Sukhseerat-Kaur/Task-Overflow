@@ -1,10 +1,11 @@
 import { ADD_CARD, DELETE_CARD } from "../constants";
 
-export const addCard = (cardContent, boardIndex) => {
+export const addCard = (cardContent, boardIndex, indexToAddCardAt = -1) => {
   return {
     type: ADD_CARD,
     payload: {
       cardContent: cardContent,
+      indexToAddCardAt: indexToAddCardAt,
       boardIndex: boardIndex,
     },
   };

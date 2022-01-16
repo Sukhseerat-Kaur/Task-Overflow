@@ -7,12 +7,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../actions/cardActions";
 
-const Card = ({ cardData, boardIndex, cardIndex }) => {
+const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
   const dispatch = useDispatch();
   const [isHover, setIsHover] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   return (
     <div
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
       className="bg-yellow-50 flex flex-col gap-4 p-4 rounded-lg"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}

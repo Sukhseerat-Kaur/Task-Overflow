@@ -38,25 +38,32 @@ export const boardReducer = (state = initialStateBoards, action) => {
   switch (action.type) {
     case ADD_CARD:
       const newCard = {
-        id: 100,
+        id: action.payload.cardContent.id
+          ? action.payload.cardContent.id
+          : state[action.payload.boardIndex].cards.length +
+            Math.floor(Math.random() * 1000 + 1),
         title: action.payload.cardContent.title,
         label: [],
         tasks: [],
         date: "",
         desc: "",
       };
-
-      const updatedCards = [...state[action.payload.boardIndex].cards, newCard];
-
+      let updatedCards = [...state[action.payload.boardIndex].cards];
+      let addAt =
+        action.payload.indexToAddCardAt !== -1
+          ? action.payload.indexToAddCardAt
+          : updatedCards.length;
+      console.log(addAt);
+      updatedCards.splice(addAt, 0, newCard);
+      console.log("cards", updatedCards);
       const updatedBoard = {
         ...state[action.payload.boardIndex],
-        cards: updatedCards,
+        cards: [...updatedCards],
       };
-
       let newArr = [...state];
-
       newArr[action.payload.boardIndex] = updatedBoard;
       return newArr;
+
     case DELETE_CARD:
       let newState = [...state];
       newState[action.payload.boardIndex].cards.splice(
@@ -67,7 +74,7 @@ export const boardReducer = (state = initialStateBoards, action) => {
 
     case ADD_BOARD:
       const newBoard = {
-        id: 100,
+        id: state.length + Math.floor(Math.random() * 1000 + 1),
         title: action.payload.boardContent.title,
         cards: [],
       };
