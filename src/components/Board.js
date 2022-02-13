@@ -1,7 +1,7 @@
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import Card from "./Card";
 import Dropdown from "./Dropdown";
-import Editable from "./Editable";
+import AddCardOrBoard from "./AddCardOrBoard";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../actions/boardActions";
@@ -62,7 +62,7 @@ const Board = ({ boardData, boardIndex, provided, snapshot }) => {
             }}
           </Draggable>
         ))}
-        <Editable
+        <AddCardOrBoard
           placeholder="Add task title..."
           callingComponent="board"
           boardIndex={boardIndex}

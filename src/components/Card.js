@@ -27,7 +27,7 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
         <header className="flex w-full">
           <div className="flex flex-1 gap-2 flex-wrap">
             {cardData?.labels?.map((label, index) => (
-              <Label key={index} labelData={label} close={false} />
+              <Label key={index} labelData={label} showClose={false} />
             ))}
           </div>
           <div className="relative">
@@ -73,9 +73,8 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
           onClose={() => {
             setShowModal(false);
           }}
-        >
-          <h1>Yooo</h1>
-        </Modal>
+          cardData={cardData}
+        />
       )}
     </>
   );

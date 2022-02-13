@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addBoard } from "../actions/boardActions";
 import { addCard } from "../actions/cardActions";
-const Editable = ({
+const AddCardOrBoard = ({
   btnText,
   placeholder,
   callingComponent,
@@ -71,4 +71,4 @@ const Editable = ({
   );
 };
 
-export default Editable;
+export default AddCardOrBoard;

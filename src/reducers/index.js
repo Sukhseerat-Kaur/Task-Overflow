@@ -16,7 +16,7 @@ const initialStateBoards = [
           },
         ],
         desc: "have to finish now",
-        date: "29 Nov",
+        date: "2022-02-12",
       },
       {
         id: 2,

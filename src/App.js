@@ -1,6 +1,6 @@
 import React from "react";
 import Board from "./components/Board";
-import Editable from "./components/Editable";
+import AddCardOrBoard from "./components/AddCardOrBoard";
 import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { addCard, deleteCard } from "./actions/cardActions";
@@ -82,7 +82,7 @@ function App() {
             );
           })}
           <div className="w-1/4 min-w-1/4">
-            <Editable
+            <AddCardOrBoard
               btnText="+ Add Board"
               placeholder="Add board title..."
               btnColor="rgb(30, 58, 138)"
