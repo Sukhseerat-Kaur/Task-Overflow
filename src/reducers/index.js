@@ -29,7 +29,7 @@ if (boardsFromLocalStorage) {
               color: "red",
             },
           ],
-          desc: "Very important",
+          desc: "RDBMS assignment is to be submitted tomorrow, complete it asap. You can do it!!",
           date: "2022-02-12",
         },
       ],
@@ -47,10 +47,18 @@ export const boardReducer = (state = initialStateBoards, action) => {
           : state[action.payload.boardIndex].cards.length +
             Math.floor(Math.random() * 1000 + 1),
         title: action.payload.cardContent.title,
-        label: [],
-        tasks: [],
-        date: "",
-        desc: "",
+        labels: action.payload.cardContent?.labels
+          ? action.payload.cardContent.labels
+          : [],
+        tasks: action.payload.cardContent?.tasks
+          ? action.payload.cardContent?.tasks
+          : [],
+        date: action.payload.cardContent?.date
+          ? action.payload.cardContent?.date
+          : "",
+        desc: action.payload.cardContent?.desc
+          ? action.payload.cardContent?.desc
+          : "",
       };
       let updatedCards = [...state[action.payload.boardIndex].cards];
       let addAt =

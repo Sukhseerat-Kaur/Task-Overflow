@@ -56,9 +56,12 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
           </div>
         </header>
 
-        <div>{cardData?.title}</div>
+        <div className="flex flex-col gap-1">
+          <span className="text-orange">{cardData?.title}</span>{" "}
+          <p className="text-xs font-normal text-blue-800">{cardData?.desc}</p>
+        </div>
 
-        <footer className="flex justify-between mt-4 text-gray-500 font-medium">
+        <footer className="flex justify-between mt-2 text-gray-500 font-medium">
           {cardData?.date ? (
             <span className="flex items-center w-max">
               <BsCalendarDate className="inline-block" />
@@ -73,8 +76,12 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
           <span className="flex items-center w-max">
             <FiCheckSquare className="inline-block" />
             <span className="text-sm">
-              &nbsp;{cardData?.tasks.filter((task) => task.completed).length}/
-              {cardData?.tasks?.length}
+              &nbsp;
+              {cardData?.tasks
+                ? cardData?.tasks?.filter((task) => task.completed).length +
+                  "/" +
+                  cardData?.tasks?.length
+                : "0/0"}
             </span>
           </span>
         </footer>
