@@ -28,6 +28,10 @@ if (boardsFromLocalStorage) {
               text: "urgent",
               color: "red",
             },
+            {
+              text: "new",
+              color: "#4fcc25",
+            },
           ],
           desc: "RDBMS assignment is to be submitted tomorrow, complete it asap. You can do it!!",
           date: "2022-02-12",
