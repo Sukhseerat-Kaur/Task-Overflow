@@ -6,40 +6,48 @@ import {
   UPDATE_CARD,
 } from "../constants";
 
-const initialStateBoards = [
-  {
-    id: 1,
-    title: "To do",
-    cards: [
-      {
-        id: 1,
-        title: "Card 1",
-        tasks: [{ id: 1, taskName: "task1", completed: true }],
-        labels: [
-          {
-            text: "urgent",
-            color: "red",
-          },
-        ],
-        desc: "have to finish now",
-        date: "2022-02-12",
-      },
-      {
-        id: 2,
-        title: "Card 2",
-        tasks: [],
-        labels: [
-          {
-            text: "important",
-            color: "green",
-          },
-        ],
-        desc: "have to finish now 2",
-        date: "2022-02-14",
-      },
-    ],
-  },
-];
+let initialStateBoards;
+const boardsFromLocalStorage = localStorage.getItem("boards");
+if (boardsFromLocalStorage) {
+  initialStateBoards = JSON.parse(boardsFromLocalStorage);
+} else {
+  initialStateBoards = [
+    {
+      id: 1,
+      title: "To do",
+      cards: [
+        {
+          id: 1,
+          title: "Card 1",
+          tasks: [{ id: 1, taskName: "task1", completed: true }],
+          labels: [
+            {
+              text: "urgent",
+              color: "red",
+            },
+          ],
+          desc: "have to finish now",
+          date: "2022-02-12",
+        },
+        {
+          id: 2,
+          title: "Card 2",
+          tasks: [],
+          labels: [
+            {
+              text: "important",
+              color: "green",
+            },
+          ],
+          desc: "have to finish now 2",
+          date: "2022-02-14",
+        },
+      ],
+    },
+  ];
+
+  localStorage.setItem("boards", JSON.stringify(initialStateBoards));
+}
 export const boardReducer = (state = initialStateBoards, action) => {
   switch (action.type) {
     case ADD_CARD:
@@ -68,6 +76,8 @@ export const boardReducer = (state = initialStateBoards, action) => {
       };
       let newArr = [...state];
       newArr[action.payload.boardIndex] = updatedBoard;
+
+      localStorage.setItem("boards", JSON.stringify(newArr));
       return newArr;
 
     case UPDATE_CARD:
@@ -81,6 +91,7 @@ export const boardReducer = (state = initialStateBoards, action) => {
 
       const updatedState = [...state];
       updatedState[action.payload.boardIndex] = updatedBoardsObj;
+      localStorage.setItem("boards", JSON.stringify(updatedState));
       return updatedState;
 
     case DELETE_CARD:
@@ -89,6 +100,8 @@ export const boardReducer = (state = initialStateBoards, action) => {
         action.payload.cardIndex,
         1
       );
+
+      localStorage.setItem("boards", JSON.stringify(newState));
       return newState;
 
     case ADD_BOARD:
@@ -98,12 +111,14 @@ export const boardReducer = (state = initialStateBoards, action) => {
         cards: [],
       };
 
+      localStorage.setItem("boards", JSON.stringify([...state, newBoard]));
       return [...state, newBoard];
 
     case DELETE_BOARD:
       let newBoards = [...state];
       newBoards.splice(action.payload.boardIndex, 1);
 
+      localStorage.setItem("boards", JSON.stringify(newBoards));
       return newBoards;
 
     default:
