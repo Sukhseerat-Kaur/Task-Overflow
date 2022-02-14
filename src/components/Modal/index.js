@@ -203,6 +203,9 @@ const Modal = ({ onCloseModal, cardData, cardIndex, boardIndex }) => {
                   value={labelName}
                   placeholder="Enter Label..."
                   onChange={(e) => setLabelName(e.target.value)}
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter") addLabel();
+                  }}
                   className="bg-yellow-50 h-full w-1/2 p-3 rounded border-2 border-yellow-300 focus:outline-blue focus:border-transparent"
                 />
 
@@ -257,6 +260,9 @@ const Modal = ({ onCloseModal, cardData, cardIndex, boardIndex }) => {
                 value={taskName}
                 placeholder="Enter Task..."
                 onChange={(e) => setTaskName(e.target.value)}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") addTask();
+                }}
                 className="bg-yellow-50 h-full w-1/2 p-3 rounded border-2 border-yellow-300 focus:outline-blue focus:border-transparent"
               />
 
