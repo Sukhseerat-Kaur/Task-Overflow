@@ -59,15 +59,23 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
         <div>{cardData?.title}</div>
 
         <footer className="flex justify-between mt-4 text-gray-500 font-medium">
-          {cardData.date && (
+          {cardData?.date ? (
             <span className="flex items-center w-max">
               <BsCalendarDate className="inline-block" />
-              <span className="text-sm">&nbsp;{cardData?.date}</span>
+              <span className="text-sm">
+                &nbsp;{new Date(cardData?.date).toDateString().substr(8, 2)}{" "}
+                {new Date(cardData?.date).toDateString().substr(4, 3)}
+              </span>
             </span>
+          ) : (
+            <div />
           )}
           <span className="flex items-center w-max">
             <FiCheckSquare className="inline-block" />
-            <span className="text-sm">&nbsp;1/3</span>
+            <span className="text-sm">
+              &nbsp;{cardData?.tasks.filter((task) => task.completed).length}/
+              {cardData?.tasks?.length}
+            </span>
           </span>
         </footer>
       </div>
