@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import Label from "../Label";
 import { useDispatch } from "react-redux";
 import { updateCard } from "../../actions/cardActions";
+import { deleteCard } from "../../actions/cardActions";
 
 const Modal = ({ onCloseModal, cardData, cardIndex, boardIndex }) => {
   const dispatch = useDispatch();
@@ -276,12 +277,19 @@ const Modal = ({ onCloseModal, cardData, cardIndex, boardIndex }) => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mt-4">
+        <div className="w-full flex gap-0 justify-between mt-4">
           <button
             onClick={onSubmitHandler}
             className="bg-blue-800 hover:bg-blue-900 py-1 px-2 flex items-center justify-center text-gray-100 h-fit rounded w-fit"
           >
             Save
+          </button>
+
+          <button
+            onClick={() => dispatch(deleteCard(cardIndex, boardIndex))}
+            className="bg-red-700 hover:bg-red-800 py-1 px-2 flex items-center justify-center text-gray-100 h-fit rounded w-fit"
+          >
+            Delete
           </button>
         </div>
       </div>
