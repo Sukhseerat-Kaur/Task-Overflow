@@ -6,43 +6,10 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { addCard, deleteCard } from "./actions/cardActions";
 
 function App() {
-  // const [boards, setBoards] = useState([
-  //   {
-  //     id: 1,
-  //     title: "To do",
-  //     cards: [
-  //       {
-  //         id: 1,
-  //         title: "Card 1",
-  //         tasks: [],
-  //         labels: [
-  //           {
-  //             text: "urgent",
-  //             color: "red",
-  //           },
-  //         ],
-  //         desc: "have to finish now",
-  //         date: "29 Nov",
-  //       },
-  //       {
-  //         id: 2,
-  //         title: "Card 2",
-  //         tasks: [],
-  //         labels: [
-  //           {
-  //             text: "important",
-  //             color: "green",
-  //           },
-  //         ],
-  //         desc: "have to finish now 2",
-  //         date: "30 Nov",
-  //       },
-  //     ],
-  //   },
-  // ]);
-
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
+
+  console.log(boards);
 
   const handleOnDragEnd = (e) => {
     if (!e.destination) return;

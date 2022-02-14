@@ -35,10 +35,13 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
               size="1.3rem"
               className={
                 isHover
-                  ? "justify-self-end cursor-pointer opacity-100 transition-opacity"
-                  : "justify-self-end cursor-pointer opacity-0 transition-opacity"
+                  ? "cursor-pointer opacity-100 transition-opacity"
+                  : "cursor-pointer opacity-0 transition-opacity"
               }
-              onClick={() => setShowDropdown(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDropdown(true);
+              }}
             />
             {showDropdown && (
               <Dropdown
@@ -70,10 +73,12 @@ const Card = ({ cardData, boardIndex, cardIndex, provided }) => {
       </div>
       {showModal && (
         <Modal
-          onClose={() => {
+          onCloseModal={() => {
             setShowModal(false);
           }}
           cardData={cardData}
+          cardIndex={cardIndex}
+          boardIndex={boardIndex}
         />
       )}
     </>

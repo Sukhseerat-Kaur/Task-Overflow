@@ -1,4 +1,10 @@
-import { ADD_CARD, DELETE_CARD, ADD_BOARD, DELETE_BOARD } from "../constants";
+import {
+  ADD_CARD,
+  DELETE_CARD,
+  ADD_BOARD,
+  DELETE_BOARD,
+  UPDATE_CARD,
+} from "../constants";
 
 const initialStateBoards = [
   {
@@ -8,7 +14,7 @@ const initialStateBoards = [
       {
         id: 1,
         title: "Card 1",
-        tasks: [],
+        tasks: [{ id: 1, taskName: "task1", completed: true }],
         labels: [
           {
             text: "urgent",
@@ -63,6 +69,19 @@ export const boardReducer = (state = initialStateBoards, action) => {
       let newArr = [...state];
       newArr[action.payload.boardIndex] = updatedBoard;
       return newArr;
+
+    case UPDATE_CARD:
+      let updatedCardsArray = state[action.payload.boardIndex].cards;
+      updatedCardsArray[action.payload.cardIndex] = action.payload.cardContent;
+
+      const updatedBoardsObj = {
+        ...state[action.payload.boardIndex],
+        cards: updatedCardsArray,
+      };
+
+      const updatedState = [...state];
+      updatedState[action.payload.boardIndex] = updatedBoardsObj;
+      return updatedState;
 
     case DELETE_CARD:
       let newState = [...state];

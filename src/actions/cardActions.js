@@ -1,4 +1,4 @@
-import { ADD_CARD, DELETE_CARD } from "../constants";
+import { ADD_CARD, DELETE_CARD, UPDATE_CARD } from "../constants";
 
 export const addCard = (cardContent, boardIndex, indexToAddCardAt = -1) => {
   return {
@@ -17,6 +17,17 @@ export const deleteCard = (cardIndex, boardIndex) => {
     payload: {
       cardIndex: cardIndex,
       boardIndex: boardIndex,
+    },
+  };
+};
+
+export const updateCard = (cardIndex, boardIndex, cardContent) => {
+  return {
+    type: UPDATE_CARD,
+    payload: {
+      cardIndex: cardIndex,
+      boardIndex: boardIndex,
+      cardContent: cardContent,
     },
   };
 };
