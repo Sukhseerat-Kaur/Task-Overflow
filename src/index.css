@@ -22,3 +22,31 @@
   border-radius: 80px;
   background-color: rgba(221, 97, 74, 0.69);
 }
+
+.modal {
+  animation: popup 0.7s;
+}
+
+@keyframes modal {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -96,7 +96,7 @@ const Modal = ({ onCloseModal, cardData, cardIndex, boardIndex }) => {
 
   return (
     <div
-      className="modal-bg fixed top-0 left-0 h-screen w-full flex justify-center items-center"
+      className="modal-bg fixed top-0 left-0 h-screen w-full flex justify-center items-center ease-linear duration-300"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.5" }}
       onClick={(e) => (onCloseModal ? onCloseModal() : "")}
     >

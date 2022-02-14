@@ -18,29 +18,19 @@ if (boardsFromLocalStorage) {
       cards: [
         {
           id: 1,
-          title: "Card 1",
-          tasks: [{ id: 1, taskName: "task1", completed: true }],
+          title: "Assignments",
+          tasks: [
+            { id: 1, taskName: "System Design", completed: true },
+            { id: 2, taskName: "RDBMS", completed: false },
+          ],
           labels: [
             {
               text: "urgent",
               color: "red",
             },
           ],
-          desc: "have to finish now",
+          desc: "Very important",
           date: "2022-02-12",
-        },
-        {
-          id: 2,
-          title: "Card 2",
-          tasks: [],
-          labels: [
-            {
-              text: "important",
-              color: "green",
-            },
-          ],
-          desc: "have to finish now 2",
-          date: "2022-02-14",
         },
       ],
     },
