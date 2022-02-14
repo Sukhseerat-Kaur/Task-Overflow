@@ -43,13 +43,13 @@ const AddCardOrBoard = ({
           />
           <div className="flex items-center w-full justify-center gap-5 text-gray-100">
             <button
-              className="bg-blue-800 hover:bg-blue-900 px-3 py-1 rounded-sm"
+              className="bg-blue-800 hover:bg-blue-900 px-3 py-1 rounded"
               onClick={handleFormSubmit}
             >
               Add
             </button>
             <button
-              className="px-3 py-1 rounded-sm bg-red-700 hover:bg-red-800"
+              className="px-3 py-1 rounded bg-red-700 hover:bg-red-800"
               onClick={() => setShowEdit(false)}
             >
               Cancel
